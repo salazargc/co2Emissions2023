@@ -3,8 +3,12 @@ window.onload = init;
 function init() {
   //  Map View
   const map = L.map("mapid", {
-    center: [0, 0],
-    zoom: 2,
+    minZoom:3,
+    maxZoom:5,
+    zoomControl:true,
+    worlCopyJump:true,
+    center: [22, 10],
+    zoom: 4,
   });
 
   // Basemap
@@ -15,6 +19,7 @@ function init() {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
       subdomains: "abcd",
       maxZoom: 20,
+      opacity: 0.9,
     },
   ).addTo(map);
 
@@ -157,7 +162,13 @@ function init() {
         );
       },
     }).addTo(map);
-    map.fitBounds(emissionsGeojson.getBounds());
+    const bounds = emissionsGeojson.getBounds();
+    if (bounds.isValid()) {
+      map.fitBounds(bounds, {
+        padding: [100, 80],
+        maxZoom: 4,
+      });
+    }
   };
 
   let myBarChart = null;
