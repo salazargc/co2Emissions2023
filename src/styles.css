@@ -21,10 +21,10 @@ canvas #myChart {
 #overlay {
         position: absolute;
         z-index: 1000;
-        top:60px;
+        top:5px;
         background: rgba(237, 237, 237);
         padding: 20px;
-        left: 0;
+        right: 0;
         margin: 20px 10px;
         border-radius: 5px;
         width: 300px;

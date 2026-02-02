@@ -15,10 +15,8 @@ function init() {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
       subdomains: "abcd",
       maxZoom: 20,
-    }
+    },
   ).addTo(map);
-
-  
 
   // Chart Information
   let countryData = [];
@@ -30,7 +28,7 @@ function init() {
     for (let i = 0; i < dataChart.length; ++i) {
       let co2 = dataChart[i].properties["Co2-Emissions"] || 0;
       let continent = dataChart[i].properties["Continent"];
-      if (continent){
+      if (continent) {
         let idx = countryData.indexOf(dataChart[i].properties["Continent"]);
         if (idx < 0) {
           countryData.push(continent);
@@ -39,16 +37,11 @@ function init() {
 
         continentEmissions[continent] += co2;
       }
-
-      }
-
-      
+    }
 
     emissionsData = countryData.map((continent) =>
-      Math.round(continentEmissions[continent] / 100000)
+      Math.round(continentEmissions[continent] / 100000),
     );
-
-   
 
     let barColors = [
       "#810f7c",
@@ -58,7 +51,6 @@ function init() {
       "#bfd3e6",
       "#edf8fb",
     ];
-    
 
     myBarChart = new Chart(ctx, {
       type: "doughnut",
@@ -83,7 +75,6 @@ function init() {
         },
       },
     });
-   
   }
 
   const emissionsToMap = (data) => {
@@ -109,12 +100,50 @@ function init() {
         return L.circleMarker(latlng, { radius: 65 });
       },
       style: function (feature) {
-        return {
-          fillOpacity: 0.4,
-          fillColor: "#885df1",
-          color: "#885df1",
-          opacity: 0.3,
-        };
+        if (feature.properties["Continent"] === "Asia") {
+          return {
+            fillOpacity: 0.4,
+            fillColor: "#810f7c",
+            color: "#810f7c",
+            opacity: 0.3,
+          };
+        } else if (feature.properties["Continent"] === "Europe") {
+          return {
+            fillOpacity: 0.4,
+            fillColor: "#8856a7",
+            color: "#8856a7",
+            opacity: 0.3,
+          };
+        } else if (feature.properties["Continent"] === "Africa") {
+          return {
+            fillOpacity: 0.4,
+            fillColor: "#8c96c6",
+            color: "#8c96c6",
+            opacity: 0.3,
+          };
+        } else if (feature.properties["Continent"] === "North America") {
+          return {
+            fillOpacity: 0.4,
+            fillColor: "#9ebcda",
+            color: "#9ebcda",
+            opacity: 0.3,
+          };
+        } else if (feature.properties["Continent"] === "South America") {
+          return {
+            fillOpacity: 0.4,
+            fillColor: "#bfd3e6",
+            color: "#bfd3e6",
+            opacity: 0.3,
+          };
+        } else feature.properties["Continent"] === "Oceania";
+        {
+          return {
+            fillOpacity: 0.4,
+            fillColor: "#edf8fb",
+            color: "#edf8fb",
+            opacity: 0.3,
+          };
+        }
       },
 
       onEachFeature: (feature, layer) => {
@@ -124,17 +153,12 @@ function init() {
             "</b></h2>" +
             "<b>2023 CO2 Emissions: </b>" +
             layer.feature.properties["Co2-Emissions"] +
-            " tons"
+            " tons",
         );
       },
     }).addTo(map);
     map.fitBounds(emissionsGeojson.getBounds());
-      
-  
-
-  }; 
-  
-
+  };
 
   let myBarChart = null;
   const ctx = document.getElementById("myChart").getContext("2d");
@@ -152,11 +176,8 @@ function init() {
         }
       })
       .then((geojson) => {
-         
-       
         chartData(geojson);
-        emissionsToMap(geojson)
-
+        emissionsToMap(geojson);
       })
 
       .catch(function (error) {
