@@ -171,6 +171,8 @@ function init() {
     }
   };
 
+  
+
   let myBarChart = null;
   const ctx = document.getElementById("myChart").getContext("2d");
 

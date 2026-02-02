@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
   crossorigin="" />
   <link rel="stylesheet" href="src/styles.css">
+  <link rel="stylesheet" href="https://balladaniel.github.io/leaflet-dataclassification/leaflet-dataclassification.css" />
   
   <title>CO2 Emissions 2023</title>
    
@@ -14,6 +15,62 @@
   <div id="mapid"></div>
   <div id="overlay">
   <canvas id="myChart"></canvas>
+  <div id="map-legend" class="map-legend">
+
+  <div class="legend-item">
+    
+  <h4>CO₂ Emissions (Mt)</h4>
+
+  <div class="size-legend">
+  <div class="size-item">
+    <span class="bubble large"></span>
+    <span>High</span>
+  </div>
+  <div class="size-item">
+    <span class="bubble medium"></span>
+    <span>Medium</span>
+  </div>
+  <div class="size-item">
+    <span class="bubble small"></span>
+    <span>Low</span>
+  </div>
+</div>
+
+
+  <!-- <h3 style="color: rgb(102, 101, 101);font-family: Arial, Helvetica, sans-serif;">Legend</h3>
+     <svg height="220" width="100%">
+             
+                <circle
+                  cx="45"
+                  cy="42"
+                  r="40"
+                  style="stroke-width: 3; stroke: #810f7c; fill: #810f7c; fill-opacity: 0.5"
+                />
+                <text x="95" y="45" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px">
+                  10000000+
+                </text>
+                <circle
+                  cx="45"
+                  cy="120"
+                  r="32"
+                  style="stroke-width: 3; stroke: #810f7c; fill: #810f7c; fill-opacity: 0.5"
+                />
+                <text x="95" y="130" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px">
+                  7000000 - 10000000
+                </text>
+                <circle
+                  cx="45"
+                  cy="185"
+                  r="25"
+                  style="stroke-width: 3; stroke: #810f7c; fill: #810f7c; fill-opacity: 0.5"
+                />
+                <text x="90" y="190" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px">
+                  10000000
+                </text>
+      </svg> -->
+                
+                
+   
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
@@ -21,6 +78,7 @@
   </script>
   
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://balladaniel.github.io/leaflet-dataclassification/leaflet-dataclassification.js"></script>
   <script src="src/app.js"></script>
 
 
